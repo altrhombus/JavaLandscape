@@ -1,0 +1,5 @@
+DeviceProcessEvents
+| where Timestamp > ago(45d)
+| where ProcessVersionInfoInternalFileName contains 'java'
+| project DeviceName, AccountDomain, AccountName, AccountUpn, Timestamp, FileName, FolderPath, ProcessVersionInfoCompanyName, ProcessVersionInfoProductName, ProcessVersionInfoProductVersion, ProcessVersionInfoOriginalFileName, InitiatingProcessFileName, InitiatingProcessFolderPath, InitiatingProcessVersionInfoProductVersion
+| summarize max(Timestamp) by DeviceName, AccountDomain, AccountName, AccountUpn, FileName, FolderPath, ProcessVersionInfoCompanyName, ProcessVersionInfoProductName, ProcessVersionInfoProductVersion, ProcessVersionInfoOriginalFileName, InitiatingProcessFileName, InitiatingProcessFolderPath, InitiatingProcessVersionInfoProductVersion
